@@ -1,8 +1,6 @@
 # Shelike::Pipe
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/shelike/pipe`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Shelike::Pipe offer an operator to behave like the pipe operator of the shell.
 
 ## Installation
 
@@ -22,13 +20,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```rb
+require 'shelike/pipe'
+
+using ShelikePipe
+
+# Can let an object of the left side of a go board apply to the symbol of the right side.
+('foo' | :upcase).call # => 'FOO'
+
+# Can apply it for the Method and Proc
+require 'json'
+
+('{ "a": 1 }' | JSON.method(:parse)).call           # => { "a" => 1 }
+('{ "a": 1 }' | ->(json) { JSON.parse(json) }).call # => { "a" => 1 }
+
+# When an argument is necessary, define it with sequence. 
+(%w(a b c) | :size | [:*, 3]).call # => 9
+
+# Can return nil when carry out processing by silence method when an exception occurs on the way.
+('{ a: 1 }' | JSON.method(:parse)).call    # => JSON::ParserError
+('{ a: 1 }' | JSON.method(:parse)).silence # => nil
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After checking out the repo, run `bin/setup` to install dependencies.
 
 ## Contributing
 

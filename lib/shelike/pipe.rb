@@ -1,4 +1,4 @@
-require 'shelike/pipe/version'
+# require 'shelike/pipe/version'
 
 module Shelike
   module Pipe
