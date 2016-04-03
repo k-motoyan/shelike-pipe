@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['k-motoyan']
   spec.email = ['k.motoyan888@gmail.com']
 
-  spec.summary = 'shell like pipe operator for ruby.'
+  spec.summary = 'Shelike::Pipe offer an operator to behave like the pipe operator of the shell.'
   spec.homepage = 'https://github.com/k-motoyan/shelike-pipe'
   spec.license = 'MIT'
 
