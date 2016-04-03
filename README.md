@@ -23,7 +23,7 @@ Or install it yourself as:
 ```rb
 require 'shelike/pipe'
 
-using ShelikePipe
+using Shelike::Pipe
 
 # Can let an object of the left side of a go board apply to the symbol of the right side.
 ('foo' | :upcase).call # => 'FOO'
