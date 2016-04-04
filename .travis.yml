@@ -1,9 +1,7 @@
 language: ruby
 cache: bundler
-sudo: required
 rvm:
   - 2.2
-  - 2.3
   - ruby-head
 matrix:
   allow_failures:
