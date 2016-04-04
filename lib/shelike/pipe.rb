@@ -1,5 +1,3 @@
-# require 'shelike/pipe/version'
-
 module Shelike
   module Pipe
     def self.build_proc(proc, apply_proc, *args)

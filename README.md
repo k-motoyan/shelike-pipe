@@ -1,5 +1,7 @@
 # Shelike::Pipe
 
+[![Build Status](https://travis-ci.org/k-motoyan/shelike-pipe.svg?branch=master)](https://travis-ci.org/k-motoyan/shelike-pipe)
+
 Shelike::Pipe offer an operator to behave like the pipe operator of the shell.
 
 ## Installation
