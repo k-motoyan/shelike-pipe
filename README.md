@@ -1,6 +1,8 @@
 # Shelike::Pipe
 
 [![Build Status](https://travis-ci.org/k-motoyan/shelike-pipe.svg?branch=master)](https://travis-ci.org/k-motoyan/shelike-pipe)
+[![Code Climate](https://codeclimate.com/github/k-motoyan/shelike-pipe/badges/gpa.svg)](https://codeclimate.com/github/k-motoyan/shelike-pipe)
+[![Test Coverage](https://codeclimate.com/github/k-motoyan/shelike-pipe/badges/coverage.svg)](https://codeclimate.com/github/k-motoyan/shelike-pipe/coverage)
 
 Shelike::Pipe offer an operator to behave like the pipe operator of the shell.
 
