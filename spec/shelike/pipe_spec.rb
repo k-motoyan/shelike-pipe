@@ -4,8 +4,15 @@ RSpec.describe Shelike::Pipe do
   using Shelike::Pipe
 
   describe 'object pipe' do
-    subject { ('test' | :upcase).call }
-    it { is_expected.to eq 'TEST' }
+    context 'given symbol' do
+      subject { ('test' | :upcase).call }
+      it { is_expected.to eq 'TEST' }
+    end
+
+    context 'given proc' do
+      subject { ('test' | :upcase.to_proc).call }
+      it { is_expected.to eq 'TEST' }
+    end
   end
 
   context 'array pipe' do
