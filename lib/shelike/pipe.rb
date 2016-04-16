@@ -51,6 +51,13 @@ module Shelike
         end
       end
 
+      def >(proc)
+        call
+      rescue => e
+        proc.call(e)
+        nil
+      end
+
       def silence
         call
       rescue => _
