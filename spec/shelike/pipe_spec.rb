@@ -44,18 +44,18 @@ RSpec.describe Shelike::Pipe do
 
     let(:proc) do
       json_string \
-        | JSON.method(:parse) \
-          > ->(_) { puts 'ok' }
+        | JSON.method(:parse) ^ ->(_) {} \
+        | [:fetch, 'a']       ^ ->(_) {}
     end
 
     context 'not except' do
       let(:json_string) { '{ "a": 1 }' }
-      it { is_expected.to eq({ 'a' => 1 }) }
+      it { is_expected.to eq 1 }
     end
 
     context 'except' do
       let(:json_string) { '{ a: 1 }' }
-      it { expect { proc }.to output("ok\n").to_stdout }
+      it { is_expected.to be_nil }
     end
   end
 end
