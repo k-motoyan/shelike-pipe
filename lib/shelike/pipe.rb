@@ -51,8 +51,8 @@ module Shelike
         end
       end
 
-      def >(proc)
-        call
+      def ^(proc)
+        call.tap { |r| raise Shelike::Pipe::Error::ResultNilError if r.nil? }
       rescue => e
         proc.call(e)
         nil
@@ -61,6 +61,16 @@ module Shelike
       def silence
         call
       rescue => _
+        nil
+      end
+    end
+
+    refine NilClass do
+      def |(_)
+        nil
+      end
+
+      def ^(_)
         nil
       end
     end
