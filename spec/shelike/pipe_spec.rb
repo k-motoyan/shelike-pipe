@@ -25,20 +25,6 @@ RSpec.describe Shelike::Pipe do
     it { is_expected.to eq 2 }
   end
 
-  describe 'silence call' do
-    subject { (json_string | JSON.method(:parse)).silence }
-
-    context 'not except' do
-      let(:json_string) { '{ "a": 1 }' }
-      it { is_expected.to eq({ 'a' => 1 }) }
-    end
-
-    context 'except' do
-      let(:json_string) { '{ a: 1 }' }
-      it { is_expected.to be_nil }
-    end
-  end
-
   describe 'exception block' do
     subject { proc }
 

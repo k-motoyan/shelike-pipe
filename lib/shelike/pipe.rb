@@ -57,12 +57,6 @@ module Shelike
         proc.call(e)
         nil
       end
-
-      def silence
-        call
-      rescue => _
-        nil
-      end
     end
 
     refine NilClass do
