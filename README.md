@@ -41,9 +41,16 @@ require 'json'
 # When an argument is necessary, define it with sequence. 
 (%w(a b c) | :size | [:*, 3]).call # => 9
 
-# Can return nil when carry out processing by silence method when an exception occurs on the way.
-('{ a: 1 }' | JSON.method(:parse)).call    # => JSON::ParserError
-('{ a: 1 }' | JSON.method(:parse)).silence # => nil
+# Carry out the function that was connected to there by using `^` and catchable an exception.
+'{ a: 1 }' | JSON.method(:parse) ^ ->(e) { exception! } 
+
+# When an exception occurs, the `^` returns `nil`, and the case except it returns the practice result of the function to there.
+'{ a: 1 }'   | JSON.method(:parse) ^ ->(e) { exception! } # => nil
+'{ "a": 1 }' | JSON.method(:parse) ^ ->(e) { exception! } # => { "a" => 1 }
+
+# When they use `|` and `^` for `nil`, results always become `nil`.
+(nil | to_i).call # => nil
+-> { nil } ^ :upcase # => nil
 ```
 
 ## Development
