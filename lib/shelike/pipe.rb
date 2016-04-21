@@ -8,47 +8,36 @@ module Shelike
       end
     end
 
+    def self.pipe(object, arg)
+      if arg.is_a? Array
+        proc_or_method = arg.shift
+        Shelike::Pipe.build_proc proc_or_method, -> { object }, *arg
+      else
+        Shelike::Pipe.build_proc arg, -> { object }
+      end
+    end
+
     refine Object do
       def |(arg)
-        if arg.is_a? Array
-          proc_or_method = arg.shift
-          Shelike::Pipe.build_proc proc_or_method, -> { self }, *arg
-        else
-          Shelike::Pipe.build_proc arg, -> { self }
-        end
+        Shelike::Pipe.pipe(self, arg)
       end
     end
 
     refine Array do
       def |(arg)
-        if arg.is_a? Array
-          proc_or_method = arg.shift
-          Shelike::Pipe.build_proc proc_or_method, -> { self }, *arg
-        else
-          Shelike::Pipe.build_proc arg, -> { self }
-        end
+        Shelike::Pipe.pipe(self, arg)
       end
     end
 
     refine Fixnum do
       def |(arg)
-        if arg.is_a? Array
-          proc_or_method = arg.shift
-          Shelike::Pipe.build_proc proc_or_method, -> { self }, *arg
-        else
-          Shelike::Pipe.build_proc arg, -> { self }
-        end
+        Shelike::Pipe.pipe(self, arg)
       end
     end
 
     refine Proc do
       def |(arg)
-        if arg.is_a? Array
-          proc_or_method = arg.shift
-          Shelike::Pipe.build_proc proc_or_method, -> { call }, *arg
-        else
-          Shelike::Pipe.build_proc arg, -> { call }
-        end
+        Shelike::Pipe.pipe(self, arg)
       end
 
       def ^(proc)
