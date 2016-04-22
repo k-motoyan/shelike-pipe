@@ -3,6 +3,16 @@ require 'json'
 RSpec.describe Shelike::Pipe do
   using Shelike::Pipe
 
+  describe 'build_proc' do
+    context 'when gave the parameter except Proc, Method, Symbol' do
+      it do
+        expect { Shelike::Pipe.build_proc('test') }.to(
+          raise_error ArgumentError
+        )
+      end
+    end
+  end
+
   describe 'object pipe' do
     context 'given symbol' do
       subject { ('test' | :upcase).call }
