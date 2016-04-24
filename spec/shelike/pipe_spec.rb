@@ -35,6 +35,11 @@ RSpec.describe Shelike::Pipe do
     it { is_expected.to eq 2 }
   end
 
+  context 'proc pipe' do
+    subject { (-> { 'a' } | :upcase).call }
+    it { is_expected.to eq 'A' }
+  end
+
   describe 'exception block' do
     subject { proc }
 

@@ -37,7 +37,12 @@ module Shelike
 
     refine Proc do
       def |(arg)
-        Shelike::Pipe.pipe(self, arg)
+        if arg.is_a? Array
+          proc_or_method = arg.shift
+          Shelike::Pipe.build_proc proc_or_method, -> { call }, *arg
+        else
+          Shelike::Pipe.build_proc arg, -> { call }
+        end
       end
 
       def ^(proc)
